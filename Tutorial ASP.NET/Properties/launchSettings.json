@@ -1,4 +1,10 @@
-﻿{
+﻿
+//Este archivo configura cómo se inicia la aplicación durante el desarrollo, 
+//permitiendo definir diferentes perfiles de ejecución. 
+//Esto es útil para ejecutar la aplicación en diferentes entornos 
+//(por ejemplo, desarrollo local con HTTP/HTTPS o IIS Express) 
+//sin cambiar el código de la aplicación.
+{
   "$schema": "http://json.schemastore.org/launchsettings.json",
   "iisSettings": {
     "windowsAuthentication": false,
