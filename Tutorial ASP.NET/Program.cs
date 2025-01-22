@@ -1,10 +1,15 @@
 // Crea un nuevo objeto WebApplicationBuilder que configura la aplicación.
 // 'args' es un array de argumentos que puede pasar información desde la línea de comandos.
+using Microsoft.EntityFrameworkCore;
+using Tutorial_ASP.NET.Data;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Agrega servicios al contenedor de dependencias.
 // Aquí se registra el servicio de controladores con vistas (MVC), lo que permite manejar peticiones y renderizar vistas.
 builder.Services.AddControllersWithViews();
+builder.Services.AddDbContext<AplicationDBContext>( option =>
+option.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 // Construye la aplicación usando la configuración definida en 'builder'.
 var app = builder.Build();
