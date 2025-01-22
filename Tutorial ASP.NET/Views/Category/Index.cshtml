@@ -29,6 +29,7 @@
                 <th>Id</th>
                 <th>Category Name</th>
                 <th>Display Order</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -42,6 +43,15 @@
                     <td>@obj.Name</td>
                     <!-- Muestra el orden de visualización de la categoría -->
                     <td>@obj.DisplayOrder</td>
+                    <!--Muestra los botones Editar y Borrar-->
+                    <td class="w-25">
+                            <a asp-controller="Category" asp-action="Edit" class="btn btn-warning mx-2">
+                                <i class="bi bi-pencil-square"></i> Edit
+                            </a>
+                            <a asp-controller="Category" asp-action="Delete" class="btn btn-danger mx-2">
+                                <i class="bi bi-x-square-fill"></i> Delete
+							</a>
+                    </td>
                 </tr>
             }
         </tbody>
