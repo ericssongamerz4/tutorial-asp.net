@@ -1,0 +1,56 @@
+﻿@model Category
+<!-- Especifica que esta vista utiliza un modelo de tipo Category -->
+@{
+    ViewData["Title"] = "Edit Category";
+}
+
+<form method="post">
+    <!-- El formulario utiliza el método POST para enviar datos al servidor -->
+    <div class="border p-3 mt-4">
+
+        <!-- Encabezado del formulario -->
+        <div class="row pb-lg-2">
+            <h1 class="text-primary">@ViewData["Title"]</h1>
+            <hr />
+        </div>
+
+        <!-- Muestra mensajes de validación generales del modelo -->
+        <div asp-validation-summary="ModelOnly"></div>
+
+        <!-- Name-->
+        <div class="mb-3 row">
+            <label asp-for="Name" mt-4">Category Name</label>
+            <input asp-for="Name" type="text" class="form-control" placeholder="Enter category">
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+
+        <!-- Display Order -->
+        <div class="mb-3 row">
+            <label asp-for="DisplayOrder" class="form-label mt-4"></label>
+            <input asp-for="DisplayOrder" class="form-control" placeholder="Enter display order">
+            <span asp-validation-for="DisplayOrder" class="text-danger"></span>
+        </div>
+
+        <!-- Botones del formulario -->
+        <div class="col">
+            <!-- Botón para enviar el formulario -->
+            <div class="col-6">
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+            <!-- Enlace para regresar a la lista de categorías -->
+            <div class="col-6">
+                <a asp-controller="Category" asp-action="Index" class="btn btn-secondary">
+                    Back to list
+                </a>
+            </div>
+        </div>
+
+    </div>
+</form>
+
+@section Scripts {
+    <!-- Incluye scripts para validación de cliente -->
+    @{
+        <partial name="_ValidationScriptsPartial" /> <!-- Scripts de validación de ASP.NET Core -->
+    }
+}
