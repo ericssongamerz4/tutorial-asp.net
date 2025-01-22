@@ -21,7 +21,7 @@ namespace Tutorial_ASP.NET.Controllers
             List<Category> objCategoryList = _db.Categories.ToList();
             return View(objCategoryList); // Devuelve la vista con la lista de categorías como modelo
         }
-
+        #region Create
         // Acción que muestra el formulario para crear una nueva categoría
         public IActionResult Create()
         {
@@ -38,7 +38,6 @@ namespace Tutorial_ASP.NET.Controllers
                 // Agrega un mensaje de error al modelo si la validación falla
                 ModelState.AddModelError("Name", "The name and the display order are the same.");
             }
-
             // Verifica si el modelo es válido (incluye validaciones automáticas y personalizadas)
             if (ModelState.IsValid)
             {
@@ -46,8 +45,36 @@ namespace Tutorial_ASP.NET.Controllers
                 _db.SaveChanges(); // Guarda los cambios en la base de datos
                 return RedirectToAction("Index", "Category"); // Redirige a la acción Index del controlador
             }
-
             return View(); // Si el modelo no es válido, vuelve a mostrar el formulario con errores
         }
+        #endregion
+
+        #region Edit
+        public IActionResult Edit(int? id)
+        {
+            if (id == null || id == 0)
+            {
+                return NotFound();
+            }
+
+            //Las 3 hacen lo mismo
+            Category? categoryFromDb = _db.Categories.Find(id);
+            //Category? categoryFromDb1 = _db.Categories.FirstOrDefault(u => u.Id == id);
+            //Category? categoryFromDb2 = _db.Categories.Where(u => u.Id == id).FirstOrDefault();
+
+            if (categoryFromDb == null) {
+                return NotFound();
+            }
+
+            return View(categoryFromDb);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(Category obj)
+        {
+
+            return View();
+        }
+        #endregion
     }
 }
