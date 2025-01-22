@@ -72,7 +72,14 @@ namespace Tutorial_ASP.NET.Controllers
         [HttpPost]
         public IActionResult Edit(Category obj)
         {
-
+            if (ModelState.IsValid)
+            {
+                _db.Categories.Update(obj);
+                _db.SaveChanges();
+                return RedirectToAction("Index"); //Cuando vas a redirigir a otra accion detro del mismo
+                //controlador no es necesario poner la categoria
+                //return RedirectToAction("Index", "Category");
+            }
             return View();
         }
         #endregion
