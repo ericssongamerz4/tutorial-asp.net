@@ -43,6 +43,7 @@ namespace Tutorial_ASP.NET.Controllers
             {
                 _db.Categories.Add(obj); // Agrega la nueva categoría al contexto de base de datos
                 _db.SaveChanges(); // Guarda los cambios en la base de datos
+                TempData["success"] = "Category Created Succesfully";
                 return RedirectToAction("Index", "Category"); // Redirige a la acción Index del controlador
             }
             return View(); // Si el modelo no es válido, vuelve a mostrar el formulario con errores
@@ -76,6 +77,7 @@ namespace Tutorial_ASP.NET.Controllers
             {
                 _db.Categories.Update(obj);
                 _db.SaveChanges();
+                TempData["success"] = "Category Updated Succesfully";
                 return RedirectToAction("Index"); //Cuando vas a redirigir a otra accion detro del mismo
                 //controlador no es necesario poner la categoria
                 //return RedirectToAction("Index", "Category");
@@ -112,6 +114,7 @@ namespace Tutorial_ASP.NET.Controllers
             }
             _db.Categories.Remove(obj);
             _db.SaveChanges();
+            TempData["success"] = "Category Deleted Succesfully";
             return RedirectToAction("Index");
         }
         #endregion
